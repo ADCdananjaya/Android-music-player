@@ -15,8 +15,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var seekBar: SeekBar
     private lateinit var runnable: Runnable
     private lateinit var handler: Handler
-    private var timeText = "0.0 min"
-    private  var remainText = "0.0 min"
+    private lateinit var playedTime: TextView
+    private lateinit var dueTime: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity() {
             mediaPlayer = null
             handler.removeCallbacks(runnable)
             seekBar.progress = 0
-            timeText = "0.0 min"
-            remainText = "0.0 min"
+            playedTime.text = "0.0 min"
+            dueTime.text = "0.0 min"
         }
     }
 
@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        val playedTime = findViewById<TextView>(R.id.playTime)
-        val dueTime = findViewById<TextView>(R.id.dueTime)
+        playedTime = findViewById(R.id.playTime)
+        dueTime = findViewById(R.id.dueTime)
         seekBar.max = mediaPlayer!!.duration
 
         runnable = Runnable {
@@ -76,11 +76,11 @@ class MainActivity : AppCompatActivity() {
             seekBar.progress = mediaPlayer!!.currentPosition
 
             val time = (mediaPlayer!!.currentPosition) / 60000.0
-            timeText = String.format("%.2f", time)
+            val timeText = String.format("%.2f", time)
             playedTime.text = "$timeText min"
 
             val remainTime = (mediaPlayer!!.duration / 60000.0) - time
-            remainText = String.format("%.2f", remainTime)
+            val remainText = String.format("%.2f", remainTime)
             dueTime.text = "$remainText min"
 
             handler.postDelayed(runnable, 500)
