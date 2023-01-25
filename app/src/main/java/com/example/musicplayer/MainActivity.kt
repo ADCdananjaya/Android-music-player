@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val playButton = findViewById<Button>(R.id.playButton)
+        val playButton = findViewById<FloatingActionButton>(R.id.playButton)
         val pauseButton = findViewById<FloatingActionButton>(R.id.pauseButton)
         val stopButton = findViewById<FloatingActionButton>(R.id.stopButton)
 
