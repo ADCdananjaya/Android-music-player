@@ -71,10 +71,10 @@ class MainActivity : AppCompatActivity() {
             // !! -> checks not null
             seekBar.progress = mediaPlayer!!.currentPosition
 
-            val time = mediaPlayer!!.currentPosition / 60000
-            playedTime.text = time.toString()
-            val remainTime = (mediaPlayer!!.duration / 60000) - time
-            dueTime.text = remainTime.toString()
+            val time = (mediaPlayer!!.currentPosition) / 60000.0
+            playedTime.text = "$time min"
+            val remainTime = (mediaPlayer!!.duration / 60000.0) - time
+            dueTime.text = "$remainTime min"
 
             handler.postDelayed(runnable, 500)
         }
